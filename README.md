@@ -2,7 +2,7 @@
 
 Submitted by: **Yushan Cheng**
 
-This web app: **insert description**
+This web app: The Recipe Data Dashboard is a React app that uses the Spoonacular API to display popular recipes with details like preparation time, servings, and health score. Users can search by title, filter by diet type, and view summary statistics, showcasing real-time data fetching, filtering, and visualization with React hooks.
 
 Time spent: **2** hours spent in total
 
@@ -40,7 +40,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://imgur.com/a/rRbGL4O
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
