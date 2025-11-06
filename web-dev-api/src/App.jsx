@@ -1,4 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
+import "./App.css";
+import {Link} from "react-router-dom";
+import { Bar, Scatter } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  BarElement, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend,
+} from "chart.js";
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
+
 
 
 const API_BASE = 'https://api.spoonacular.com';
@@ -140,6 +150,7 @@ export default function App() {
         </div>
       </section>
 
+
       {/* Controls */}
       <section className="controls">
         <input
@@ -161,6 +172,8 @@ export default function App() {
         </select>
       </section>
 
+
+
       {/* List */}
       <section className="list">
         <div className="list-head row">
@@ -171,28 +184,30 @@ export default function App() {
           <div>Diet Tags</div>
         </div>
 
-        {filtered.map(r => (
-          <div key={r.id} className="row">
-            <div className="title">
-              <div className="title-line">
-                {r.image && <img src={r.image} alt="" className="thumb" loading="lazy" />}
-                <span>{r.title}</span>
-              </div>
-              <div className="muted">
-                {(r.cuisines?.length ? r.cuisines.join(', ') : '—')}
-              </div>
-            </div>
-            <div>{Number.isFinite(+r.readyInMinutes) ? r.readyInMinutes : '—'}</div>
-            <div>{Number.isFinite(+r.servings) ? r.servings : '—'}</div>
-            <div>{Number.isFinite(+r.healthScore) ? r.healthScore : '—'}</div>
-            <div className="tags">
-              {r.vegetarian && <span className="tag">Vegetarian</span>}
-              {r.vegan && <span className="tag">Vegan</span>}
-              {r.glutenFree && <span className="tag">Gluten Free</span>}
-              {!r.vegetarian && !r.vegan && !r.glutenFree && <span className="muted">—</span>}
+
+      {filtered.map(r => (
+        <div key={r.id} className="row">
+          <div className="title">
+            <Link to={`/recipe/${r.id}`} className="title-line" style={{ textDecoration: "none", color: "inherit" }}>
+              {r.image && <img src={r.image} alt="" className="thumb" loading="lazy" />}
+              <span>{r.title}</span>
+            </Link>
+            <div className="muted">
+              {(r.cuisines?.length ? r.cuisines.join(', ') : '—')}
             </div>
           </div>
-        ))}
+          <div>{Number.isFinite(+r.readyInMinutes) ? r.readyInMinutes : '—'}</div>
+          <div>{Number.isFinite(+r.servings) ? r.servings : '—'}</div>
+          <div>{Number.isFinite(+r.healthScore) ? r.healthScore : '—'}</div>
+          <div className="tags">
+            {r.vegetarian && <span className="tag">Vegetarian</span>}
+            {r.vegan && <span className="tag">Vegan</span>}
+            {r.glutenFree && <span className="tag">Gluten Free</span>}
+            {!r.vegetarian && !r.vegan && !r.glutenFree && <span className="muted">—</span>}
+          </div>
+        </div>
+      ))}
+
 
         {filtered.length === 0 && (
           <p className="empty">No matches. Try clearing search or changing the diet filter.</p>
@@ -201,3 +216,4 @@ export default function App() {
     </div>
   );
 }
+
